@@ -1,4 +1,6 @@
-package com.example.credit_service.model;
+package com.example.credit_service.entity;
+
+import java.util.Random;
 
 public enum CreditStatus {
     CREATED ("СОЗДАН"),
@@ -14,5 +16,12 @@ public enum CreditStatus {
 
     public String getValue() {
         return value;
+    }
+
+    private static final Random RANDOM = new Random();
+
+    public static CreditStatus getRandomStatus() {
+        CreditStatus[] statuses = values();
+        return statuses[RANDOM.nextInt(statuses.length)];
     }
 }

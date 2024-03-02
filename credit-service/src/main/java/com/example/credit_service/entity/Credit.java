@@ -1,8 +1,9 @@
-package com.example.credit_service.model;
+package com.example.credit_service.entity;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -24,11 +25,11 @@ public class Credit {
 
     @Column(name = "credit_open_date")
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime openDate;
+    private LocalDate openDate;
 
     @Column(name = "credit_close_date")
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime closeDate;
+    private LocalDate closeDate;
 
     private Long customerId;
 
@@ -65,19 +66,19 @@ public class Credit {
         this.amount = amount;
     }
 
-    public LocalDateTime getOpenDate() {
+    public LocalDate getOpenDate() {
         return openDate;
     }
 
-    public void setOpenDate(LocalDateTime openDate) {
+    public void setOpenDate(LocalDate openDate) {
         this.openDate = openDate;
     }
 
-    public LocalDateTime getCloseDate() {
+    public LocalDate getCloseDate() {
         return closeDate;
     }
 
-    public void setCloseDate(LocalDateTime closeDate) {
+    public void setCloseDate(LocalDate closeDate) {
         this.closeDate = closeDate;
     }
 
