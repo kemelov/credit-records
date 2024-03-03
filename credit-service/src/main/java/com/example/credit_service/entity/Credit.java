@@ -15,12 +15,13 @@ public class Credit {
     private Long id;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @Column(name = "credit_created_date")
     private LocalDateTime createdDate;
 
     @Column(name = "credit_status")
-    @Enumerated(EnumType.STRING)
-    private CreditStatus status;
+    private String status;
 
+    @Column(name = "credit_amount")
     private Double amount;
 
     @Column(name = "credit_open_date")
@@ -50,11 +51,11 @@ public class Credit {
         this.createdDate = createdDate;
     }
 
-    public CreditStatus getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(CreditStatus status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
