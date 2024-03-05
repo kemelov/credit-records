@@ -21,7 +21,7 @@ public class BatchCreditRepository implements CreditRepository {
 
     @Override
     public void saveAll(List<Credit> credits) {
-        jdbcTemplate.batchUpdate("INSERT INTO tb_credit " +
+        jdbcTemplate.batchUpdate("INSERT INTO credit " +
                         "(credit_created_date, credit_status, credit_amount, credit_open_date, credit_close_date, customer_id) " +
                         "VALUES (?, ?, ?, ?, ?, ?)",
                 credits,
@@ -29,7 +29,7 @@ public class BatchCreditRepository implements CreditRepository {
                 (PreparedStatement ps, Credit credit) -> {
                     ps.setTimestamp(1, Timestamp.valueOf(credit.getCreatedDate()));
                     ps.setString(2, credit.getStatus());
-                    ps.setDouble(3, credit.getAmount());
+                    ps.setBigDecimal(3, credit.getAmount());
                     ps.setDate(4, Date.valueOf(credit.getOpenDate()));
                     ps.setDate(5, Date.valueOf(credit.getCloseDate()));
                     ps.setLong(6, credit.getCustomerId());
