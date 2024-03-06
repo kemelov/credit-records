@@ -27,13 +27,30 @@ public class BatchCreditRepository implements CreditRepository {
                 credits,
                 1000,
                 (PreparedStatement ps, Credit credit) -> {
-                    ps.setTimestamp(1, Timestamp.valueOf(credit.getCreatedDate()));
-                    ps.setString(2, credit.getStatus());
-                    ps.setBigDecimal(3, credit.getAmount());
-                    ps.setDate(4, Date.valueOf(credit.getOpenDate()));
-                    ps.setDate(5, Date.valueOf(credit.getCloseDate()));
+                    ps.setTimestamp(1, Timestamp.valueOf(credit.getCreditCreatedDate()));
+                    ps.setString(2, credit.getCreditStatus());
+                    ps.setBigDecimal(3, credit.getCreditAmount());
+                    ps.setDate(4, Date.valueOf(credit.getCreditOpenDate()));
+                    ps.setDate(5, Date.valueOf(credit.getCreditCloseDate()));
                     ps.setLong(6, credit.getCustomerId());
                 }
         );
+    }
+
+    @Override
+    public List<Credit> findAll() {
+        String sql = "SELECT * FROM credit";
+
+        return jdbcTemplate.query(sql, (rs, rowNum) -> { // Row mapper
+            Credit credit = new Credit();
+            credit.setId(rs.getLong("id"));
+            credit.setCreditCreatedDate(rs.getTimestamp("credit_created_date").toLocalDateTime());
+            credit.setCreditStatus(rs.getString("credit_status"));
+            credit.setCreditAmount(rs.getBigDecimal("credit_amount"));
+            credit.setCreditOpenDate(rs.getDate("credit_open_date").toLocalDate());
+            credit.setCreditCloseDate(rs.getDate("credit_close_date").toLocalDate());
+            credit.setCustomerId(rs.getLong("customer_id"));
+            return credit;
+        });
     }
 }

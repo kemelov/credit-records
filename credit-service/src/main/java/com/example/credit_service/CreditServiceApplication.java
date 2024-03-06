@@ -17,7 +17,7 @@ public class CreditServiceApplication implements CommandLineRunner {
 	}
 	@Override
 	public void run(String... args) {
-		long duration = creditService.createCredits(CreditService.TOTAL_RECORDS);
+		long duration = creditService.createCredits(2_000_000);
 		System.out.println("Время сздания всех записей: " + duration + " миллисекунд");
 	}
 

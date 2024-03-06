@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface CreditRepository {
     void saveAll(List<Credit> credits);
+    List<Credit> findAll();
 }

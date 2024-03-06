@@ -24,10 +24,10 @@ public class Credit {
 
     private BigDecimal creditAmount;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate creditOpenDate;
 
-    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private LocalDate creditCloseDate;
 
     private Long customerId;
@@ -41,44 +41,44 @@ public class Credit {
         return id;
     }
 
-    public LocalDateTime getCreatedDate() {
+    public LocalDateTime getCreditCreatedDate() {
         return creditCreatedDate;
     }
 
-    public void setCreatedDate(LocalDateTime createdDate) {
+    public void setCreditCreatedDate(LocalDateTime createdDate) {
         this.creditCreatedDate = createdDate;
     }
 
-    public String getStatus() {
+    public String getCreditStatus() {
         return creditStatus;
     }
 
-    public void setStatus(String status) {
-        this.creditStatus = status;
+    public void setCreditStatus(String creditStatus) {
+        this.creditStatus = creditStatus;
     }
 
-    public BigDecimal getAmount() {
+    public BigDecimal getCreditAmount() {
         return creditAmount;
     }
 
-    public void setAmount(BigDecimal amount) {
-        this.creditAmount = amount;
+    public void setCreditAmount(BigDecimal creditAmount) {
+        this.creditAmount = creditAmount;
     }
 
-    public LocalDate getOpenDate() {
+    public LocalDate getCreditOpenDate() {
         return creditOpenDate;
     }
 
-    public void setOpenDate(LocalDate openDate) {
-        this.creditOpenDate = openDate;
+    public void setCreditOpenDate(LocalDate creditOpenDate) {
+        this.creditOpenDate = creditOpenDate;
     }
 
-    public LocalDate getCloseDate() {
+    public LocalDate getCreditCloseDate() {
         return creditCloseDate;
     }
 
-    public void setCloseDate(LocalDate closeDate) {
-        this.creditCloseDate = closeDate;
+    public void setCreditCloseDate(LocalDate creditCloseDate) {
+        this.creditCloseDate = creditCloseDate;
     }
 
     public Long getCustomerId() {
