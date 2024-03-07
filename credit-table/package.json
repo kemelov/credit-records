@@ -11,6 +11,7 @@
   "dependencies": {
     "@vitejs/plugin-vue": "^4.0.0",
     "axios": "^1.6.7",
+    "file-saver": "^2.0.5",
     "primeflex": "^3.3.1",
     "primeicons": "^6.0.1",
     "primevue": "^3.49.1",

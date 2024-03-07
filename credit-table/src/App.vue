@@ -7,13 +7,13 @@
           <Button icon="pi pi-external-link" label="Export" @click="exportCSV($event)" />
         </div>
       </template>
-      <Column field="id" header="ID" exportHeader="Credit ID"></Column>
-      <Column field="createdDate" header="Created Date"></Column>
-      <Column field="status" header="Status"></Column>
-      <Column field="amount" header="Amount"></Column>
-      <Column field="openDate" header="Open Date"></Column>
-      <Column field="closeDate" header="Close Date"></Column>
-      <Column field="customerId" header="Customer ID"></Column>
+      <Column field="id" header="ID" exportHeader="Credit ID" sortable ></Column>
+      <Column field="createdDate" header="Created Date" sortable ></Column>
+      <Column field="status" header="Status" sortable ></Column>
+      <Column field="amount" header="Amount" sortable ></Column>
+      <Column field="openDate" header="Open Date" sortable ></Column>
+      <Column field="closeDate" header="Close Date" sortable ></Column>
+      <Column field="customerId" header="Customer ID" sortable ></Column>
     </DataTable>
   </div>
 </template>
