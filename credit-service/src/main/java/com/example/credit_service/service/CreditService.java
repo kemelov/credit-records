@@ -3,10 +3,14 @@ package com.example.credit_service.service;
 import com.example.credit_service.entity.Credit;
 import com.example.credit_service.repository.CreditRepository;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Random;
+import java.util.Collections;
+import java.util.Set;
 
 
 public class CreditService {
@@ -19,17 +23,17 @@ public class CreditService {
     }
 
     public long createCredits(int count) {
-        // Generate shuffled customer IDs with Stream API (more efficient)
         List<Long> customerIds = generateRandomCustomerId(count);
         long startTime = System.currentTimeMillis();
-        final String[] statuses = { "CREATED", "IN PROGRESS", "ACTIVE", "CLOSED"};
+        final String[] statuses = { "CREATED", "IN PROCESS", "ACTIVE", "CLOSED"};
+
         for (int i = 0; i < count; i++) {
             Credit credit = new Credit();
-            credit.setCreditCreatedDate(LocalDateTime.now());
-            credit.setCreditStatus(statuses[RANDOM.nextInt(4)]);
-            credit.setCreditAmount(BigDecimal.valueOf(Math.random() * 10000));
-            credit.setCreditOpenDate(LocalDate.now());
-            credit.setCreditCloseDate(LocalDate.now().plusDays((int) (Math.random() * 365)));
+            credit.setCreatedDate(LocalDateTime.now());
+            credit.setStatus(statuses[RANDOM.nextInt(4)]);
+            credit.setAmount(RANDOM.nextDouble(1, 1000));
+            credit.setOpenDate(LocalDate.now());
+            credit.setCloseDate(LocalDate.now().plusDays(RANDOM.nextInt(1, 365)));
             credit.setCustomerId(customerIds.get(i)+1);
             credits.add(credit);
         }
@@ -52,25 +56,28 @@ public class CreditService {
         while (generated.size() < p1) {
             generated.add(RANDOM.nextLong(p4));
         }
-        allIds.addAll(generated);
 
+        allIds.addAll(generated);
         generated.clear();
+
         while (generated.size() < p2) {
             generated.add(RANDOM.nextLong(p4));
         }
-        allIds.addAll(generated);
 
+        allIds.addAll(generated);
         generated.clear();
+
         while (generated.size() < p3) {
             generated.add(RANDOM.nextLong(p4));
         }
-        allIds.addAll(generated);
 
+        allIds.addAll(generated);
         Collections.shuffle(allIds);
+
         return allIds;
     }
 
-    public List<Credit> findAll() {
+    public List<Credit> listAll() {
         return repository.findAll();
     }
 }

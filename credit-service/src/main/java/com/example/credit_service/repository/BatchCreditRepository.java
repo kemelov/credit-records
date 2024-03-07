@@ -22,16 +22,16 @@ public class BatchCreditRepository implements CreditRepository {
     @Override
     public void saveAll(List<Credit> credits) {
         jdbcTemplate.batchUpdate("INSERT INTO credit " +
-                        "(credit_created_date, credit_status, credit_amount, credit_open_date, credit_close_date, customer_id) " +
+                        "(created_date, status, amount, open_date, close_date, customer_id) " +
                         "VALUES (?, ?, ?, ?, ?, ?)",
                 credits,
                 1000,
                 (PreparedStatement ps, Credit credit) -> {
-                    ps.setTimestamp(1, Timestamp.valueOf(credit.getCreditCreatedDate()));
-                    ps.setString(2, credit.getCreditStatus());
-                    ps.setBigDecimal(3, credit.getCreditAmount());
-                    ps.setDate(4, Date.valueOf(credit.getCreditOpenDate()));
-                    ps.setDate(5, Date.valueOf(credit.getCreditCloseDate()));
+                    ps.setTimestamp(1, Timestamp.valueOf(credit.getCreatedDate()));
+                    ps.setString(2, credit.getStatus());
+                    ps.setDouble(3, credit.getAmount());
+                    ps.setDate(4, Date.valueOf(credit.getOpenDate()));
+                    ps.setDate(5, Date.valueOf(credit.getCloseDate()));
                     ps.setLong(6, credit.getCustomerId());
                 }
         );
@@ -41,14 +41,14 @@ public class BatchCreditRepository implements CreditRepository {
     public List<Credit> findAll() {
         String sql = "SELECT * FROM credit";
 
-        return jdbcTemplate.query(sql, (rs, rowNum) -> { // Row mapper
+        return jdbcTemplate.query(sql, (rs, rowNum) -> {
             Credit credit = new Credit();
             credit.setId(rs.getLong("id"));
-            credit.setCreditCreatedDate(rs.getTimestamp("credit_created_date").toLocalDateTime());
-            credit.setCreditStatus(rs.getString("credit_status"));
-            credit.setCreditAmount(rs.getBigDecimal("credit_amount"));
-            credit.setCreditOpenDate(rs.getDate("credit_open_date").toLocalDate());
-            credit.setCreditCloseDate(rs.getDate("credit_close_date").toLocalDate());
+            credit.setCreatedDate(rs.getTimestamp("created_date").toLocalDateTime());
+            credit.setStatus(rs.getString("status"));
+            credit.setAmount(rs.getDouble("amount"));
+            credit.setOpenDate(rs.getDate("open_date").toLocalDate());
+            credit.setCloseDate(rs.getDate("close_date").toLocalDate());
             credit.setCustomerId(rs.getLong("customer_id"));
             return credit;
         });

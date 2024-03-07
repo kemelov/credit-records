@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
@@ -18,17 +17,17 @@ public class Credit {
     private Long id;
 
     @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
-    private LocalDateTime creditCreatedDate;
+    private LocalDateTime createdDate;
 
-    private String creditStatus;
+    private String status;
 
-    private BigDecimal creditAmount;
-
-    @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate creditOpenDate;
+    private Double amount;
 
     @JsonFormat(pattern = "dd-MM-yyyy")
-    private LocalDate creditCloseDate;
+    private LocalDate openDate;
+
+    @JsonFormat(pattern = "dd-MM-yyyy")
+    private LocalDate closeDate;
 
     private Long customerId;
 
@@ -41,44 +40,43 @@ public class Credit {
         return id;
     }
 
-    public LocalDateTime getCreditCreatedDate() {
-        return creditCreatedDate;
+    public LocalDateTime getCreatedDate() {
+        return createdDate;
     }
 
-    public void setCreditCreatedDate(LocalDateTime createdDate) {
-        this.creditCreatedDate = createdDate;
+    public void setCreatedDate(LocalDateTime createdDate) {
+        this.createdDate = createdDate;
     }
 
-    public String getCreditStatus() {
-        return creditStatus;
+    public String getStatus() {
+        return status;
     }
 
-    public void setCreditStatus(String creditStatus) {
-        this.creditStatus = creditStatus;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+    public Double getAmount() {
+        return amount;
     }
 
-    public BigDecimal getCreditAmount() {
-        return creditAmount;
+    public void setAmount(Double amount) {
+        this.amount = amount;
     }
 
-    public void setCreditAmount(BigDecimal creditAmount) {
-        this.creditAmount = creditAmount;
+    public LocalDate getOpenDate() {
+        return openDate;
     }
 
-    public LocalDate getCreditOpenDate() {
-        return creditOpenDate;
+    public void setOpenDate(LocalDate openDate) {
+        this.openDate = openDate;
     }
 
-    public void setCreditOpenDate(LocalDate creditOpenDate) {
-        this.creditOpenDate = creditOpenDate;
+    public LocalDate getCloseDate() {
+        return closeDate;
     }
 
-    public LocalDate getCreditCloseDate() {
-        return creditCloseDate;
-    }
-
-    public void setCreditCloseDate(LocalDate creditCloseDate) {
-        this.creditCloseDate = creditCloseDate;
+    public void setCloseDate(LocalDate closeDate) {
+        this.closeDate = closeDate;
     }
 
     public Long getCustomerId() {
@@ -88,4 +86,5 @@ public class Credit {
     public void setCustomerId(Long customerId) {
         this.customerId = customerId;
     }
+
 }

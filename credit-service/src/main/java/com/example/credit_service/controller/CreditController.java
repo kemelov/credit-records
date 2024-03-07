@@ -21,7 +21,7 @@ public class CreditController {
 
     @GetMapping
     public ResponseEntity<List<Credit>> getAllCredits() {
-        List<Credit> credits = service.findAll();
+        List<Credit> credits = service.listAll();
         if (credits.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
