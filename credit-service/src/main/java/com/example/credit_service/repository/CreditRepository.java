@@ -1,10 +1,11 @@
 package com.example.credit_service.repository;
 
 
-import com.example.credit_service.model.Credit;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+import com.example.credit_service.entity.Credit;
 
-@Repository
-public interface CreditRepository extends JpaRepository<Credit, Long> {
+import java.util.List;
+
+public interface CreditRepository {
+    void saveAll(List<Credit> credits);
+    List<Credit> findAll();
 }
